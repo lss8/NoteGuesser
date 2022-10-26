@@ -5,20 +5,26 @@ pygame.init()
 pygame.font.init()
 running = True  
 
+# setando o tamanho da tela e titulo da janela
 tela = pygame.display.set_mode((1200, 700))
 pygame.display.set_caption("Joguinho")
 
+# variaveis para testar a interface
 currentNote = 1
 testInt = 0
 
+# setando as fontes a serem usadas
 screen = pygame.display.get_surface()
 titleFont = pygame.font.SysFont('Comic Sans MS', 60)
 feedbackProgressActionFont = pygame.font.SysFont('Comic Sans MS', 50)
 keyPressFont = pygame.font.SysFont('Comic Sans MS', 30)
 
+# funcao que eh chamada para renderizar a tela
 def render():
     screen.fill(pygame.Color("black"))
 
+    # as variaveis com Text sao para setar o texto, e a sua cor em RGB
+    # a funcao tela.blit eh para renderizar o texto na posicao x,y
     titleText = titleFont.render('NoteGuesser', True, (255, 255, 255))
     tela.blit(titleText, (416, 50))
 
@@ -48,16 +54,22 @@ def render():
     tela.blit(key1Text, (244, 608))
     tela.blit(key2Text, (761, 608))
 
+# loop que ficara rodando enquanto o jogo estiver aberto
 while running:
     pygame.time.delay(100)
 
+    # funcao para poder clicar no x e fechar o jogo
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
+    # chamada da funcao render
     render()
     
+    # funcao para receber input do teclado    
     keys = pygame.key.get_pressed()
+    
+     # aloca uma acao a cada input de teclado
     if keys[pygame.K_RETURN]:
         testInt = 1
     if keys[pygame.K_SPACE]:
@@ -72,4 +84,5 @@ while running:
         currentNote = 1
         testInt = 0
 
+    # atualiza o display com a nova tela renderizada
     pygame.display.update()
