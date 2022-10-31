@@ -6,7 +6,7 @@ from mingus.midi import midi_file_out
 from mingus.containers import Note
 from sympy import true
 
-def receive_a_note_to_play(note, repeat=3):
+def receive_a_note_to_play(note, repeat=1):
     note_to_play = Note(note , 4)
     midi_file_out.write_Note("note.mid", note_to_play , 45)
 
